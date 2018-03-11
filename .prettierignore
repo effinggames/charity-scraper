@@ -1,0 +1,4 @@
+*.md
+bower.json
+package.json
+package-lock.json
