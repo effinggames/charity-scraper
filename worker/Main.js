@@ -6,7 +6,7 @@ if (Cluster.isMaster) {
   if (process.env.NODE_ENV === 'production') {
     console.log('Running in production mode!');
   } else {
-    console.log(
+    console.warn(
       "Running in development mode, set NODE_ENV to 'production' for multi-core support."
     );
     cpuCount = 1;

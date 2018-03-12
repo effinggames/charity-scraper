@@ -3,12 +3,11 @@ import * as PgBoss from 'pg-boss';
 import * as Xml2js from 'xml2js';
 import {promisify} from 'typed-promisify';
 import {defaultErrorHandler} from 'shared/PromiseHelper';
-import {subscribe} from 'shared/PgBossHelper';
-import {knex} from 'shared/DatabaseHelper';
+import {boss, subscribe} from 'shared/PgBossHelper';
+// import {knex} from 'shared/DatabaseHelper';
 import {EXTRACT_XML_PAYLOAD, PARSE_JSON_PAYLOAD} from 'shared/Types';
-import {DatabaseTables, PostgresConnectionString, JobQueueTypes} from 'shared/Constants';
+import {JobQueueTypes} from 'shared/Constants';
 
-const boss = new PgBoss(PostgresConnectionString);
 const parseString = promisify(Xml2js.parseString);
 
 async function jobHandler(job: PgBoss.JobWithDoneCallback<EXTRACT_XML_PAYLOAD, any>) {
@@ -32,7 +31,6 @@ async function jobHandler(job: PgBoss.JobWithDoneCallback<EXTRACT_XML_PAYLOAD, a
 }
 
 (async function init(): Promise<void> {
-  await boss.start();
   console.log('Starting extract worker');
-  subscribe(boss, JobQueueTypes.EXTRACT_XML, jobHandler);
+  subscribe(JobQueueTypes.EXTRACT_XML, jobHandler);
 })();

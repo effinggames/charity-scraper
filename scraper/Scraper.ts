@@ -1,8 +1,7 @@
 import * as Request from 'request-promise-native';
-import * as PgBoss from 'pg-boss';
-import {PostgresConnectionString, JobQueueTypes} from 'shared/Constants';
+import {boss} from 'shared/PgBossHelper';
+import {JobQueueTypes} from 'shared/Constants';
 import {EXTRACT_XML_PAYLOAD} from 'shared/Types';
-const boss = new PgBoss(PostgresConnectionString);
 
 /**
  * Breaks an array into specified chunk sizes.
