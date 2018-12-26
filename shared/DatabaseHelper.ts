@@ -1,5 +1,5 @@
-import {PostgresConnectionString} from './Constants';
 import * as Knex from 'knex';
+import { PostgresConnectionString } from './Constants';
 
 /**
  * Initializes the shared db connection pool.
@@ -7,5 +7,5 @@ import * as Knex from 'knex';
 export const knex = Knex({
   client: 'pg',
   connection: PostgresConnectionString,
-  pool: {min: 1, max: 1}
+  pool: { min: 1, max: 1 },
 });

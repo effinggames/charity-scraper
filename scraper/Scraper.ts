@@ -1,7 +1,7 @@
 import * as Request from 'request-promise-native';
-import {boss} from 'shared/PgBossHelper';
-import {JobQueueTypes} from 'shared/Constants';
-import {EXTRACT_XML_PAYLOAD} from 'shared/Types';
+import { JobQueueTypes } from 'shared/Constants';
+import { boss } from 'shared/PgBossHelper';
+import { IExtractPayload } from 'shared/Types';
 
 /**
  * Breaks an array into specified chunk sizes.
@@ -25,17 +25,17 @@ function chunkArray<T>(array: T[], chunkSize: number): T[][] {
  * @param year The year of charity data to download.
  * @returns Returns a promise when all the job queue jobs finished submitting.
  */
-async function getCharityFilingsForYear(year: string): Promise<(string | null)[]> {
+async function getCharityFilingsForYear(year: string): Promise<Array<string | null>> {
   const awsUrl = `https://s3.amazonaws.com/irs-form-990/index_${year}.json`;
   console.log(`Loading xml urls for ${awsUrl}`);
 
-  const json: any = await Request.get(awsUrl, {json: true});
+  const json: any = await Request.get(awsUrl, { json: true });
   const xmlUrls: string[] = json[`Filings${year}`].map((data: any) => data.URL);
   console.log(`${xmlUrls.length} xml urls loaded`);
 
-  const promises = chunkArray(xmlUrls, 100).map(function(urls) {
-    const payload: EXTRACT_XML_PAYLOAD = {urls: urls};
-    return boss.publish(JobQueueTypes.EXTRACT_XML, payload, {expireIn: '9999 years'});
+  const promises = chunkArray(xmlUrls, 100).map((urls) => {
+    const payload: IExtractPayload = { urls };
+    return boss.publish(JobQueueTypes.EXTRACT_XML, payload, { expireIn: '9999 years' });
   });
 
   return Promise.all(promises);
@@ -45,7 +45,7 @@ async function getCharityFilingsForYear(year: string): Promise<(string | null)[]
   const years = process.argv.slice(2);
 
   // Verify args are the correct format.
-  const isValidInput = years.every(function(year) {
+  const isValidInput = years.every((year) => {
     return /^\d+$/.test(year);
   });
 

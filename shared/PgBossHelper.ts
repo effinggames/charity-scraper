@@ -1,7 +1,7 @@
-import * as url from 'url';
-import * as PgBoss from 'pg-boss';
 import * as Cluster from 'cluster';
-import {PostgresConnectionString} from './Constants';
+import * as PgBoss from 'pg-boss';
+import * as url from 'url';
+import { PostgresConnectionString } from './Constants';
 
 function parseConnectionString(connectionString: string): PgBoss.DatabaseOptions {
   const parseQuerystring = true;
@@ -11,15 +11,17 @@ function parseConnectionString(connectionString: string): PgBoss.DatabaseOptions
   params.auth = params.auth || '';
   const auth = params.auth ? params.auth.split(':') : [];
 
-  let parsed: PgBoss.DatabaseOptions = {
-    user: auth[0],
-    host: params.hostname,
-    port: parseInt(params.port),
+  const parsed: PgBoss.DatabaseOptions = {
     database: params.pathname.split('/')[1],
-    ssl: !!params.query.ssl
+    host: params.hostname,
+    port: parseInt(params.port, 10),
+    ssl: !!params.query.ssl,
+    user: auth[0],
   };
 
-  if (auth.length === 2) parsed.password = auth[1];
+  if (auth.length === 2) {
+    parsed.password = auth[1];
+  }
 
   return parsed;
 }
@@ -40,7 +42,7 @@ export const boss = new PgBoss(constructorOptions);
 export function subscribe<ReqData, ResData>(
   jobName: string,
   jobHandler: PgBoss.SubscribeHandler<ReqData, ResData>,
-  pollingFrequency = 1000
+  pollingFrequency = 1000,
 ): void {
   function fetchJob(): void {
     boss
@@ -53,7 +55,7 @@ export function subscribe<ReqData, ResData>(
     if (!job) {
       setTimeout(fetchJob, pollingFrequency);
     } else {
-      job.done = function() {
+      job.done = () => {
         fetchJob();
         return boss.complete(job.id);
       };
