@@ -1,8 +1,9 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:recommended"],
+  "extends": ["tslint-config-airbnb"],
   "rules": {
-    "no-console": false,
-    "quotemark": false
+    "trailing-comma": false,
+    "newline-before-return": true,
+    "ter-newline-after-var": true
   }
 }

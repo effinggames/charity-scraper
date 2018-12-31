@@ -1,6 +1,6 @@
 require('ts-node').register();
 require('tsconfig-paths').register();
-const {PostgresConnectionString} = require('shared/Constants');
+const { PostgresConnectionString } = require('shared/Constants');
 
 module.exports = {
   client: 'pg',

@@ -24,5 +24,6 @@ if (Cluster.isMaster) {
   require('ts-node').register();
   require('tsconfig-paths').register();
   require('./ExtractWorker');
+
   console.log('Worker %d running!', Cluster.worker.id);
 }

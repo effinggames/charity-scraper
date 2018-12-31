@@ -1,6 +1,7 @@
-export interface IExtractPayload {
+export interface ExtractXMLPayload {
   urls: string[];
 }
-export interface IParsePayload {
+
+export interface ParseJSONPayload {
   charityData: any;
 }
