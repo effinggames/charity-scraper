@@ -1,4 +1,4 @@
-import * as Url from 'url';
+import { parse as parseUrl } from 'url';
 
 /**
  * Breaks an array into specified chunk sizes.
@@ -27,7 +27,7 @@ export function getEnvVarOrThrow(name: string): string {
 }
 
 export function parseConnectionString(connectionString: string) {
-  const params = Url.parse(connectionString, true);
+  const params = parseUrl(connectionString, true);
 
   params.pathname = params.pathname || '';
   params.hostname = params.hostname || '';
