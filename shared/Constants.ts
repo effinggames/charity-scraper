@@ -8,13 +8,8 @@ function getEnvVariable(name: string): string {
   return value;
 }
 
-export enum JobQueueTypes {
-  EXTRACT_XML = 'EXTRACT_XML',
-  PARSE_JSON = 'PARSE_JSON'
-}
-
-export enum DatabaseTables {
-  CHARITY_RAW_DATA = 'charity.raw_data'
+export enum JobQueueNames {
+  EXTRACT_XML = 'EXTRACT_XML'
 }
 
 // Mandatory Env Variables

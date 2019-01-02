@@ -1,0 +1,289 @@
+{
+  "Return": {
+    "$": {
+      "returnVersion": "2010v3.2",
+      "xmlns": "http://www.irs.gov/efile",
+      "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+    },
+    "ReturnHeader": {
+      "$": {
+        "binaryAttachmentCount": "0"
+      },
+      "Timestamp": "2011-05-29T15:14:42-07:00",
+      "TaxPeriodEndDate": "2010-12-31",
+      "ReturnType": "990EZ",
+      "TaxPeriodBeginDate": "2010-01-01",
+      "Filer": {
+        "EIN": "300057920",
+        "Name": {
+          "BusinessNameLine1": "WINDY CITY SOARING INC"
+        },
+        "NameControl": "WIND",
+        "Phone": "6307975021",
+        "USAddress": {
+          "AddressLine1": "38W742 Foxwood Ln",
+          "City": "Saint Charles",
+          "State": "IL",
+          "ZIPCode": "60175"
+        }
+      },
+      "Officer": {
+        "Name": "Mike Kraus",
+        "Title": "Treasurer",
+        "Phone": "6307975021",
+        "DateSigned": "2011-05-29"
+      },
+      "TaxYear": "2010",
+      "BuildTS": "2016-02-24 21:20:13Z"
+    },
+    "ReturnData": {
+      "$": {
+        "documentCount": "2"
+      },
+      "IRS990EZ": {
+        "$": {
+          "documentId": "R000001",
+          "referenceDocumentId": "R000002",
+          "softwareId": "10000077",
+          "softwareVersion": "v1.00"
+        },
+        "MethodOfAccountingAccrual": "X",
+        "ScheduleBNotRequired": "X",
+        "WebSite": "www.windycitysoaring.org",
+        "Organization501c": {
+          "_": "X",
+          "$": {
+            "typeOf501cOrganization": "7"
+          }
+        },
+        "GrossReceipts": "96023",
+        "InfoInScheduleOPartI": "X",
+        "ContributionsGiftsGrantsEtc": "1954",
+        "ProgramServiceRevenue": "0",
+        "MembershipDues": "85761",
+        "InvestmentIncome": "52",
+        "GrossAmountFromSaleOfAssets": "0",
+        "CostOtherBasisAndSalesExpenses": "0",
+        "GainOrLossFromSaleOfAssets": "0",
+        "GamingGrossIncome": "0",
+        "FundraisingGrossIncome": {
+          "_": "0",
+          "$": {
+            "contributionsReportedOnLine1a": "0"
+          }
+        },
+        "SpecialEventsDirectExpenses": "0",
+        "SpecialEventsNetIncomeLoss": "0",
+        "GrossSalesOfInventory": "996",
+        "CostOfGoodsSold": "996",
+        "GroProfitLossSalesOfInventory": "0",
+        "OtherRevenueTotal": "7260",
+        "TotalRevenue": "95027",
+        "GrantsAndSimilarAmountsPaid": "2233",
+        "BenefitsPaidToOrForMembers": "0",
+        "SalariesOtherCompEmplBenefits": "0",
+        "FeesAndOthPymtToIndContractors": "0",
+        "OccupancyRentUtilitiesAndMaint": "32406",
+        "PrintingPublicationsPostage": "231",
+        "OtherExpensesTotal": "59338",
+        "TotalExpenses": "94208",
+        "ExcessOrDeficitForYear": "819",
+        "NetAssetsOrFundBalancesBOY": "7609",
+        "OtherChangesInNetAssets": "0",
+        "NetAssetsOrFundBalancesEOY": "8428",
+        "InfoInScheduleOPartII": "X",
+        "CashSavingsAndInvestments": {
+          "BOY": "72542",
+          "EOY": "58111"
+        },
+        "LandAndBuildings": {
+          "BOY": "0",
+          "EOY": "0"
+        },
+        "OtherAssetsTotal": {
+          "BOY": "134630",
+          "EOY": "115692"
+        },
+        "TotalAssets": {
+          "BOY": "207172",
+          "EOY": "173803"
+        },
+        "SumOfTotalLiabilities": {
+          "BOY": "199563",
+          "EOY": "165375"
+        },
+        "NetAssetsOrFundBalances": {
+          "BOY": "7609",
+          "EOY": "8428"
+        },
+        "PrimaryExemptPurpose": "The mission of Windy City Soaring Association is to advance and promote the art, science, and sport of soaring through a complete program of education, training, and advanced flying for the benefit of its members and the general public.",
+        "ProgramServiceAccomplishment": [
+          {
+            "DescriptionProgramServiceAccom": "Youth Development Programs, General/Other: Development of scholarship youth program that encourages young adult to participate in and develop skills in controlling non-powered aircraft. (3 Members)",
+            "GrantsAndAllocations": "0",
+            "ProgramServiceExpenses": "6180"
+          },
+          {
+            "DescriptionProgramServiceAccom": "Recreation & Sports Programs, General/Other: Initial and advanced flight through a program of oral, written and practical flight instruction and examinations. Developed flight training program and trained several members. (44 Members)",
+            "GrantsAndAllocations": "0",
+            "ProgramServiceExpenses": "90646"
+          },
+          {
+            "DescriptionProgramServiceAccom": "Unknown/Unclassified: Technical advancement of soaring through testing of new method and equipment in competitions. Planning for this took place in 2009 for the 2010 season. (2 Members)",
+            "GrantsAndAllocations": "0",
+            "ProgramServiceExpenses": "4120"
+          }
+        ],
+        "TotalProgramServiceExpenses": "100946",
+        "OfficerDirectorTrusteeKeyEmpl": [
+          {
+            "PersonName": "John Ehrisman",
+            "AddressUS": {
+              "AddressLine1": "1243 Redfield Road",
+              "City": "Naperville",
+              "State": "IL",
+              "ZIPCode": "60563"
+            },
+            "Title": "President",
+            "AvgHoursPerWkDevotedToPosition": "10.00",
+            "Compensation": "0",
+            "ContriToEmplBenefitPlansEtc": "0",
+            "ExpenseAccountOtherAllowances": "0"
+          },
+          {
+            "PersonName": "John O'Brien",
+            "AddressUS": {
+              "AddressLine1": "6538 N Nordica",
+              "City": "Chicago",
+              "State": "IL",
+              "ZIPCode": "60631"
+            },
+            "Title": "Secretary",
+            "AvgHoursPerWkDevotedToPosition": "10",
+            "Compensation": "0",
+            "ContriToEmplBenefitPlansEtc": "0",
+            "ExpenseAccountOtherAllowances": "0"
+          },
+          {
+            "PersonName": "Mike Kraus",
+            "AddressUS": {
+              "AddressLine1": "38W742 Foxwood Ln",
+              "City": "Saint Charles",
+              "State": "IL",
+              "ZIPCode": "60175"
+            },
+            "Title": "Treasurer",
+            "AvgHoursPerWkDevotedToPosition": "20",
+            "Compensation": "0",
+            "ContriToEmplBenefitPlansEtc": "0",
+            "ExpenseAccountOtherAllowances": "0"
+          },
+          {
+            "PersonName": "Chuck Spreizter",
+            "AddressUS": {
+              "AddressLine1": "7316 Larchwood Ln",
+              "City": "Woodridge",
+              "State": "IL",
+              "ZIPCode": "60517"
+            },
+            "Title": "Director",
+            "AvgHoursPerWkDevotedToPosition": "10",
+            "Compensation": "0",
+            "ContriToEmplBenefitPlansEtc": "0",
+            "ExpenseAccountOtherAllowances": "0"
+          },
+          {
+            "PersonName": "Jeff Kukuk",
+            "AddressUS": {
+              "AddressLine1": "49W151 Deer Ridge Path",
+              "City": "Big Rock",
+              "State": "IL",
+              "ZIPCode": "60511"
+            },
+            "Title": "Director",
+            "AvgHoursPerWkDevotedToPosition": "10",
+            "Compensation": "0",
+            "ContriToEmplBenefitPlansEtc": "0",
+            "ExpenseAccountOtherAllowances": "0"
+          },
+          {
+            "PersonName": "Darek Ratajewski",
+            "AddressUS": {
+              "AddressLine1": "321 Charlotte Ct 1",
+              "City": "Schaumburg",
+              "State": "IL",
+              "ZIPCode": "60193"
+            },
+            "Title": "Director",
+            "AvgHoursPerWkDevotedToPosition": "10",
+            "Compensation": "0",
+            "ContriToEmplBenefitPlansEtc": "0",
+            "ExpenseAccountOtherAllowances": "0"
+          }
+        ],
+        "ActivitiesNotPreviouslyRpt": "0",
+        "MadeChangesToOrgnzngEtcDoc": "0",
+        "OrganizationHadUBI": "0",
+        "OrganizationDissolvedEtc": "0",
+        "DirectIndirectPoliticalExpend": "0",
+        "DidOrgFileForm1120POLThisYear": "0",
+        "MadeLoansToFromOfficers": "0",
+        "InitiationFeesAndCapitalContri": "2000",
+        "GrossReceiptsForPublicUse": "0",
+        "ProhibitedTaxShelterTrans": "0",
+        "StatesWhereCopyOfReturnIsFiled": "IL",
+        "TheBooksAreInCareOf": {
+          "NamePerson": "Mike Kraus",
+          "AddressUS": {
+            "AddressLine1": "38W742 Foxwood Lane",
+            "City": "Saint Charles",
+            "State": "IL",
+            "ZIPCode": "60175"
+          },
+          "TelephoneNumber": "6307975021"
+        },
+        "ForeignFinancialAccount": "0",
+        "ForeignOffice": "0",
+        "MaintainAnyDonorAdvisedFunds": "0",
+        "DoesOrgHaveHospital": "0",
+        "TanningServicesProvided": "0",
+        "RelatedOrgControlledEntity": "0",
+        "EngagePoliticalCmpgnActivities": "0"
+      },
+      "IRS990ScheduleO": {
+        "$": {
+          "documentId": "R000002",
+          "softwareId": "10000077",
+          "softwareVersion": "v1.00"
+        },
+        "GeneralExplanation": [
+          {
+            "Identifier": "F99Z_P01_S00_L08",
+            "ReturnReference": "Form 990-EZ, Part I, Line 8",
+            "Explanation": "Hangar Rental $6,725 and Insurance Reimbursement $535"
+          },
+          {
+            "Identifier": "F99Z_P01_S00_L10",
+            "ReturnReference": "Form 990-EZ, Part I, Line 10",
+            "Explanation": "Hinckley Cadet Flying Scholarship $2,233"
+          },
+          {
+            "Identifier": "F99Z_P01_S00_L16",
+            "ReturnReference": "Form 990-EZ, Part I, Line 16",
+            "Explanation": "Depreciation, Insurance, Aircraft Fuel, Loan Interest, Outside Fees (PIC, SSA, CLGC), Bad Debt, Tow Plane Lease, Marketing, Office Expenses, Auto & Travel, Business Meetings, Licenses & Fees"
+          },
+          {
+            "Identifier": "F99Z_P02_S00_L24",
+            "ReturnReference": "Form 990-EZ, Part II, Line 24",
+            "Explanation": "Accounts receivable $3,696, prepaid expenses $6,723, undeposited funds $100, aircraft (net of depreciation) $104,373, ground equipment (net of depreciation) $802"
+          },
+          {
+            "Identifier": "F99Z_P02_S00_L26",
+            "ReturnReference": "Form 990-EZ, Part II, Line 26",
+            "Explanation": "Credit cards $471, accrued expenses $5,775, deferred revenue $7,852, member deposits on account $6,945, member loans $49,791, bank loan $33,876, maintenance reserve $60,646"
+          }
+        ]
+      }
+    }
+  }
+}

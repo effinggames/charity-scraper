@@ -5,8 +5,8 @@
   "main": "scraper/Main.js",
   "scripts": {
     "test": "tsc --noEmit && tslint --project .",
-    "scraper": "knex migrate:latest && node scraper/Main.js",
-    "worker": "knex migrate:latest && node worker/Main.js"
+    "scraper": "node scraper/Main.js",
+    "worker": "node worker/Main.js"
   },
   "author": "",
   "license": "UNLICENSED",
@@ -15,14 +15,14 @@
     "@types/node": "^9.4.6",
     "@types/request-promise-native": "^1.0.14",
     "@types/xml2js": "^0.4.2",
-    "bluebird": "^3.5.1",
-    "knex": "^0.14.4",
+    "pg": "^7.7.1",
     "pg-boss": "^2.4.3",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "ts-node": "^5.0.1",
     "tsconfig-paths": "^3.1.1",
     "typed-promisify": "^0.4.0",
+    "typeorm": "^0.2.9",
     "typescript": "^3.2.2",
     "xml2js": "^0.4.19"
   },

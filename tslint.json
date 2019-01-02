@@ -4,6 +4,8 @@
   "rules": {
     "trailing-comma": false,
     "newline-before-return": true,
-    "ter-newline-after-var": true
+    "ter-newline-after-var": true,
+    "ter-arrow-parens": false,
+    "max-line-length": false
   }
 }

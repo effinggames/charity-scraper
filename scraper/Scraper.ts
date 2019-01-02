@@ -1,5 +1,5 @@
 import * as Request from 'request-promise-native';
-import { JobQueueTypes as JobQueueNames } from 'shared/Constants';
+import { JobQueueNames } from 'shared/Constants';
 import { boss } from 'shared/PgBossHelper';
 import { ExtractXMLPayload } from 'shared/Types';
 import { chunkArray } from 'shared/Utils';
