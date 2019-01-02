@@ -1,16 +1,8 @@
-function getEnvVariable(name: string): string {
-  const value = process.env[name];
-
-  if (!value) {
-    throw new Error(`ENV variable: ${name} is not set!`);
-  }
-
-  return value;
-}
+import { getEnvVarOrThrow } from './Utils';
 
 export enum JobQueueNames {
   EXTRACT_XML = 'EXTRACT_XML'
 }
 
 // Mandatory Env Variables
-export const postgresConnectionString = getEnvVariable('DATABASE_URL');
+export const postgresConnectionString = getEnvVarOrThrow('DATABASE_URL');

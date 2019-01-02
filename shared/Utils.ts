@@ -16,6 +16,16 @@ export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   return results;
 }
 
+export function getEnvVarOrThrow(name: string): string {
+  const value = process.env[name];
+
+  if (!value) {
+    throw new Error(`ENV variable: ${name} is not set!`);
+  }
+
+  return value;
+}
+
 export function parseConnectionString(connectionString: string) {
   const params = Url.parse(connectionString, true);
 
