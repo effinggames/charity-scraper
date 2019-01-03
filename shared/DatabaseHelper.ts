@@ -9,17 +9,18 @@ let connection: Promise<Connection>;
 
 export function getConnection(): Promise<Connection> {
   if (!connection) {
-    const { database, host, port, username, password } = parseConnectionString(postgresConnectionString);
+    const data = parseConnectionString(postgresConnectionString);
 
     connection = createConnection({
-      database,
-      port,
-      host,
-      username,
-      password,
+      database: data.database,
+      port: data.port,
+      host: data.host,
+      username: data.username,
+      password: data.password,
       type: 'postgres',
       entities: [`${__dirname}/entities/*.ts`],
-      synchronize: true
+      synchronize: true,
+      extra: { min: 1, max: 2 }
     });
   }
 

@@ -1,6 +1,6 @@
 import * as Request from 'request-promise-native';
 import { JobQueueNames } from 'shared/Constants';
-import { boss } from 'shared/PgBossHelper';
+import { getPgBoss } from 'shared/PgBossHelper';
 import { ExtractXMLPayload } from 'shared/Types';
 import { chunkArray } from 'shared/Utils';
 
@@ -20,7 +20,8 @@ async function getCharityFilingsForYear(year: string): Promise<(string | null)[]
 
   console.log(`${xmlUrls.length} xml urls loaded`);
 
-  const promises = chunkArray(xmlUrls, 100).map((urls) => {
+  const boss = await getPgBoss();
+  const promises = chunkArray(xmlUrls, 100).map(async (urls) => {
     const payload: ExtractXMLPayload = { urls };
 
     return boss.publish(JobQueueNames.EXTRACT_XML, payload, { expireIn: '9999 years' });
@@ -38,8 +39,6 @@ async function init(): Promise<void> {
   });
 
   if (isValidInput && years.length > 0) {
-    await boss.start();
-
     for (const year of years) {
       await getCharityFilingsForYear(year);
     }

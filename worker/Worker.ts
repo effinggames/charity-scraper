@@ -33,7 +33,6 @@ async function jobHandler(job: PgBoss.JobWithDoneCallback<ExtractXMLPayload, any
     await Promise.all(promises);
   } finally {
     console.log(`[${JobQueueNames.EXTRACT_XML}] job done - ${counter} filings added or updated.`);
-    job.done(null, null);
   }
 }
 
