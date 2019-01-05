@@ -1,11 +1,32 @@
 {
   "defaultSeverity": "error",
   "extends": ["tslint-config-airbnb"],
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
   "rules": {
     "trailing-comma": false,
     "newline-before-return": true,
     "ter-newline-after-var": true,
     "ter-arrow-parens": false,
-    "max-line-length": false
+    "max-line-length": false,
+    "no-increment-decrement": false,
+    "align": false,
+    "typedef": [true, "call-signature"],
+    "ordered-imports": true,
+    "no-for-in": true,
+    "no-empty-line-after-opening-brace": true,
+    "no-relative-imports": [true, "allow-siblings"],
+    "completed-docs": [
+      true,
+      {
+        "enums": true,
+        "functions": {
+          "visibilities": ["exported"]
+        },
+        "methods": {
+          "locations": "instance",
+          "privacies": ["public", "protected"]
+        }
+      }
+    ]
   }
 }

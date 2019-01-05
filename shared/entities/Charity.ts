@@ -1,7 +1,7 @@
-import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
-import Filing from './Filing';
 import { CharityForm990JSON } from 'shared/Types';
-import { getOrThrow, getOrElse, mapSafely } from 'shared/Utils';
+import { getOrElse, getOrThrow, mapSafely } from 'shared/Utils';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import Filing from './Filing';
 
 @Entity()
 export default class Charity extends BaseEntity {

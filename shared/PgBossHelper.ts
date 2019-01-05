@@ -1,6 +1,6 @@
+import * as PgBoss from 'pg-boss';
 import { postgresConnectionString } from './Constants';
 import { parseConnectionString } from './Utils';
-import * as PgBoss from 'pg-boss';
 
 const data = parseConnectionString(postgresConnectionString);
 
@@ -17,7 +17,7 @@ const constructorOptions: PgBoss.DatabaseOptions = {
 const bossPromise = new PgBoss(constructorOptions).start();
 
 /**
- * Export access to the shared PgBoss instance.
+ * Gets the shared PgBoss instance.
  */
 export function getPgBoss(): Promise<PgBoss> {
   return bossPromise;
@@ -27,8 +27,8 @@ export function getPgBoss(): Promise<PgBoss> {
  * Wrapper subscribe function that only allows 1 concurrent job.
  * @param jobName Job name in the queue.
  * @param jobHandler Function that accepts a job parameter.
- * @param [jobConcurrency=1] The number of jobs to run at the same time.
- * @param [pollingFrequency=1000] The polling frequency in ms.
+ * @param jobConcurrency The number of jobs to run at the same time.
+ * @param pollingFrequency The polling frequency in ms.
  */
 export async function subscribe<ReqData, ResData>(
   jobName: string,

@@ -14,7 +14,7 @@ const parseXMLString = promisify(Xml2js.parseString);
 
 // Parses the form 990 XML, updates the charity,
 // and then inserts or updates the filing.
-async function jobHandler(job: PgBoss.JobWithDoneCallback<ExtractXMLPayload, any>) {
+async function jobHandler(job: PgBoss.JobWithDoneCallback<ExtractXMLPayload, any>): Promise<void> {
   const xmlUrls: string[] = job.data.urls;
   let counter = 0;
 
@@ -38,6 +38,7 @@ async function jobHandler(job: PgBoss.JobWithDoneCallback<ExtractXMLPayload, any
 
 async function init(): Promise<void> {
   console.log('Starting extract worker');
+  // Initializes database connection.
   await getConnection();
   subscribe(JobQueueNames.EXTRACT_XML, jobHandler);
 }

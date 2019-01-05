@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,

@@ -18,6 +18,11 @@ export default class Filing extends BaseEntity {
   year: number;
 }
 
+/**
+ * Helper function for saving or updating a new filing.
+ * @param charity
+ * @param json
+ */
 export async function saveFiling(charity: Charity, json: CharityForm990JSON): Promise<Filing> {
   const yearStr = getOrThrow(() => json.Return.ReturnHeader.TaxYear);
   const year = parseInt(yearStr, 10);

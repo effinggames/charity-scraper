@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "tslint": "^5.12.0",
-    "tslint-config-airbnb": "^5.11.1"
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-microsoft-contrib": "^6.0.0"
   }
 }

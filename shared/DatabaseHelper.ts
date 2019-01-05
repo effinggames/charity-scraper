@@ -1,30 +1,25 @@
+import { parseConnectionString } from 'shared/Utils';
 import { Connection, createConnection } from 'typeorm';
 import { postgresConnectionString } from './Constants';
-import { parseConnectionString } from 'shared/Utils';
+
+const data = parseConnectionString(postgresConnectionString);
+
+const connection = createConnection({
+  database: data.database,
+  port: data.port,
+  host: data.host,
+  username: data.username,
+  password: data.password,
+  type: 'postgres',
+  entities: [`${__dirname}/entities/*.ts`],
+  synchronize: true,
+  extra: { min: 1, max: 2 }
+});
 
 /**
- * Initializes the shared db connection pool.
+ * Returns the shared db connection pool.
+ * Initalizes if it doesn't exist yet.
  */
-let connection: Promise<Connection>;
-
 export function getConnection(): Promise<Connection> {
-  if (!connection) {
-    const data = parseConnectionString(postgresConnectionString);
-
-    connection = createConnection({
-      database: data.database,
-      port: data.port,
-      host: data.host,
-      username: data.username,
-      password: data.password,
-      type: 'postgres',
-      entities: [`${__dirname}/entities/*.ts`],
-      synchronize: true,
-      extra: { min: 1, max: 2 }
-    });
-  }
-
   return connection;
 }
-
-getConnection();

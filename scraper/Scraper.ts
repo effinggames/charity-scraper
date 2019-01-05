@@ -1,8 +1,12 @@
 import * as Request from 'request-promise-native';
 import { JobQueueNames } from 'shared/Constants';
 import { getPgBoss } from 'shared/PgBossHelper';
+import { executeInBatches } from 'shared/PromiseHelper';
 import { ExtractXMLPayload } from 'shared/Types';
 import { chunkArray } from 'shared/Utils';
+
+const XML_URL_BATCH_SIZE = 100;
+const PUBLISH_CONCURRENCY_RATE = 2;
 
 /**
  * Gets all the form 990 xml urls for a specified year.
@@ -20,14 +24,15 @@ async function getCharityFilingsForYear(year: string): Promise<(string | null)[]
 
   console.log(`${xmlUrls.length} xml urls loaded`);
 
+  const urlChunks = chunkArray(xmlUrls, XML_URL_BATCH_SIZE);
+  const payloads: ExtractXMLPayload[] = urlChunks.map((urls) => ({ urls }));
   const boss = await getPgBoss();
-  const promises = chunkArray(xmlUrls, 100).map(async (urls) => {
-    const payload: ExtractXMLPayload = { urls };
 
-    return boss.publish(JobQueueNames.EXTRACT_XML, payload, { expireIn: '9999 years' });
+  const promiseFuncs = payloads.map((payload) => {
+    return () => boss.publish(JobQueueNames.EXTRACT_XML, payload, { expireIn: '9999 years' });
   });
 
-  return Promise.all(promises);
+  return executeInBatches(promiseFuncs, PUBLISH_CONCURRENCY_RATE);
 }
 
 async function init(): Promise<void> {

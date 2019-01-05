@@ -8,14 +8,21 @@ import { parse as parseUrl } from 'url';
  */
 export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   const results: T[][] = [];
+  const arrayClone = array.slice();
+  const numOfChunks = Math.ceil(arrayClone.length / chunkSize);
 
-  while (array.length) {
-    results.push(array.splice(0, chunkSize));
+  for (let i = 0; i < numOfChunks; i++) {
+    results.push(arrayClone.splice(0, chunkSize));
   }
 
   return results;
 }
 
+/**
+ * Gets the environment variable or throws an error.
+ * @param name Name of the env variable.
+ * @returns Returns the value of the env variable.
+ */
 export function getEnvVarOrThrow(name: string): string {
   const value = process.env[name];
 
@@ -26,7 +33,21 @@ export function getEnvVarOrThrow(name: string): string {
   return value;
 }
 
-export function parseConnectionString(connectionString: string) {
+/**
+ * Parses a database connection string into easier pieces.
+ * @param connectionString Connection string like 'postgres://USER:PASSWORD@DATABASE_URL/DATABASE_NAME'.
+ * @returns Returns an object with the connection data.
+ */
+export function parseConnectionString(
+  connectionString: string
+): {
+  database: string;
+  host: string;
+  port: number;
+  ssl: boolean;
+  username: string;
+  password: string;
+} {
   const params = parseUrl(connectionString, true);
 
   params.pathname = params.pathname || '';
@@ -45,6 +66,12 @@ export function parseConnectionString(connectionString: string) {
   };
 }
 
+/**
+ * Maps a possibly undefined value to another value.
+ * @param value The value to transform.
+ * @param mapFunc The transform function.
+ * @returns Returns the possibly undefined new value.
+ */
 export function mapSafely<T, K>(value: T | undefined, mapFunc: (value: T) => K): K | undefined {
   let result;
 
@@ -55,6 +82,13 @@ export function mapSafely<T, K>(value: T | undefined, mapFunc: (value: T) => K):
   return result;
 }
 
+/**
+ * Gets the possibly undefined value from the callback.
+ * If the callback throws an error, then returns undefined.
+ * Useful when accessing a dangerous interface or 'any'.
+ * @param getCb Callback that accesses the value.
+ * @returns Returns the value or undefined.
+ */
 export function getSafely<T>(getCb: () => T | undefined): T | undefined {
   let result;
 
@@ -65,6 +99,13 @@ export function getSafely<T>(getCb: () => T | undefined): T | undefined {
   }
 }
 
+/**
+ * Gets the possibly undefined value from the callback.
+ * If the callback throws an error or returns undefined, then throws an error.
+ * Useful when accessing a dangerous interface or 'any' that's mandatory.
+ * @param getCb Callback that accesses the value.
+ * @returns Returns the value.
+ */
 export function getOrThrow<T>(getCb: () => T | undefined): T {
   const result = getSafely(getCb);
 
@@ -75,6 +116,14 @@ export function getOrThrow<T>(getCb: () => T | undefined): T {
   return result;
 }
 
+/**
+ * Gets the possibly undefined value from the callback.
+ * If the callback throws an error, then returns the provided default value.
+ * Useful when accessing a dangerous interface or 'any'.
+ * @param getCb Callback that accesses the value.
+ * @param defaultValue Fallback value if the callback errors or returns undefined.
+ * @returns Returns the callback value or the default value.
+ */
 export function getOrElse<T>(getCb: () => T | undefined, defaultValue: T): T {
   let result = getSafely(getCb);
 
@@ -83,4 +132,16 @@ export function getOrElse<T>(getCb: () => T | undefined, defaultValue: T): T {
   }
 
   return result;
+}
+
+/**
+ * Flattens an array of nested array into one array.
+ * @param nestedArrays The array to be flattened.
+ * @returns Returns the flattened array.
+ */
+export function flatten<T>(nestedArrays: T[][]): T[] {
+  const initialArray: T[] = [];
+  const flattenedArray = initialArray.concat(...nestedArrays);
+
+  return flattenedArray;
 }
