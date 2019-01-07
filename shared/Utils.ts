@@ -141,7 +141,17 @@ export function getOrElse<T>(getCb: () => T | undefined, defaultValue: T): T {
  */
 export function flatten<T>(nestedArrays: T[][]): T[] {
   const initialArray: T[] = [];
-  const flattenedArray = initialArray.concat(...nestedArrays);
+  const flatArray = initialArray.concat(...nestedArrays);
 
-  return flattenedArray;
+  return flatArray;
+}
+
+/**
+ * Checks if a value is defined, in a type-safe way.
+ * Useful for filtering through arrays.
+ * @param value The value to check.
+ * @returns Returns true/false if the value is defined.
+ */
+export function notEmpty<T>(value: T | null | undefined): value is T {
+  return value !== null && value !== undefined;
 }

@@ -18,7 +18,7 @@ const connection = createConnection({
 
 /**
  * Returns the shared db connection pool.
- * Initalizes if it doesn't exist yet.
+ * The connection needs to be initialized before the ORM entities will work.
  */
 export function getConnection(): Promise<Connection> {
   return connection;

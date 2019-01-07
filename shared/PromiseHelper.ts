@@ -1,4 +1,4 @@
-import { chunkArray, flatten } from './Utils';
+import { chunkArray, flatten, notEmpty } from './Utils';
 
 // A promise-returning function.
 export interface PromiseFunction<T> {
@@ -16,6 +16,15 @@ export function defaultErrorHandler<T>(promise: Promise<T>): Promise<T | null> {
 
     return null;
   });
+}
+
+/**
+ * Resolves all the promises and filters out any null values.
+ * @param promises List of promises to resolve.
+ * @returns Returns a promise with the list of non-null values.
+ */
+export async function resolveAndFilter<T>(promises: Promise<T | null | undefined>[]): Promise<T[]> {
+  return (await Promise.all(promises)).filter(notEmpty);
 }
 
 /**

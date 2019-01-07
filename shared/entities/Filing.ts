@@ -1,36 +1,39 @@
 import { CharityForm990JSON } from 'shared/Types';
 import { getOrThrow } from 'shared/Utils';
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import Charity from './Charity';
 
 @Entity()
 export default class Filing extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  // Combination of charity EIN + filing year.
+  // Helps prevent duplicate filings.
+  // e.g. 555555555-1999
+  @PrimaryColumn({ length: 14 })
+  einYear: string;
 
-  @ManyToOne(() => Charity, (charity) => charity.filings)
+  @ManyToOne(() => Charity, (charity) => charity.filings, { onDelete: 'CASCADE' })
   charity: Charity;
 
   @Column('jsonb')
   data: CharityForm990JSON;
 
-  @Column()
-  year: number;
-}
+  /**
+   * Helper function for creating a new filing.
+   * @param charity Charity to use as foreign key.
+   * @param json The Form 990 JSON.
+   * @returns Returns a promise for the saved filing.
+   */
+  static createFiling(charity: Charity, json: CharityForm990JSON): Filing {
+    const ein = getOrThrow(() => json.Return.ReturnHeader.Filer.EIN);
+    const yearStr = getOrThrow(() => json.Return.ReturnHeader.TaxYear);
+    const year = parseInt(yearStr, 10);
+    const einYear = `${ein}-${year}`;
+    const filing = new Filing();
 
-/**
- * Helper function for saving or updating a new filing.
- * @param charity
- * @param json
- */
-export async function saveFiling(charity: Charity, json: CharityForm990JSON): Promise<Filing> {
-  const yearStr = getOrThrow(() => json.Return.ReturnHeader.TaxYear);
-  const year = parseInt(yearStr, 10);
-  const filing = (await Filing.findOne({ charity, year })) || new Filing();
+    filing.einYear = einYear;
+    filing.charity = charity;
+    filing.data = json;
 
-  filing.charity = charity;
-  filing.data = json;
-  filing.year = year;
-
-  return filing.save();
+    return filing;
+  }
 }
