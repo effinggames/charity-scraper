@@ -1,0 +1,22 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-f',
+        './Dockerfile-worker',
+        '-t',
+        'gcr.io/perceptive-map-205801/bitbucket-effinggames-charity-scraper-worker:$BRANCH_NAME-$COMMIT_SHA',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/perceptive-map-205801/bitbucket-effinggames-charity-scraper-worker:$BRANCH_NAME-$COMMIT_SHA']
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'set'
+      - 'image'
+      - 'deployment/charity-scraper-worker'
+      - 'bitbucket-effinggames-charity-scraper-worker=gcr.io/perceptive-map-205801/bitbucket-effinggames-charity-scraper-worker:$BRANCH_NAME-$COMMIT_SHA'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=dev-cluster-1'
