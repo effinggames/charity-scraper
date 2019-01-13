@@ -1,5 +1,5 @@
 import { CharityForm990JSON } from 'shared/Types';
-import { getOrElse, getOrThrow, mapSafely } from 'shared/Utils';
+import { getOrElse, getOrThrow, initWithProps, mapSafely } from 'shared/Utils';
 import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import Filing from './Filing';
 
@@ -45,11 +45,11 @@ export default class Charity extends BaseEntity {
         .replace(/\s/g, '-')
     );
 
-    const charity = new Charity();
-
-    charity.ein = ein;
-    charity.name = fullName;
-    charity.urlSlug = urlSlug;
+    const charity = initWithProps(Charity, {
+      ein,
+      urlSlug,
+      name: fullName
+    });
 
     return charity;
   }

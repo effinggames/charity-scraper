@@ -1,6 +1,13 @@
 import { parse as parseUrl } from 'url';
 
 /**
+ * Useful for generic functions that need to extend from objects.
+ */
+export interface ObjectLiteral {
+  [key: string]: any;
+}
+
+/**
  * Breaks an array into specified chunk sizes.
  * @param array The array to break apart.
  * @param chunkSize What size the chunks should be.
@@ -135,18 +142,6 @@ export function getOrElse<T>(getCb: () => T | undefined, defaultValue: T): T {
 }
 
 /**
- * Flattens an array of nested array into one array.
- * @param nestedArrays The array to be flattened.
- * @returns Returns the flattened array.
- */
-export function flatten<T>(nestedArrays: T[][]): T[] {
-  const initialArray: T[] = [];
-  const flatArray = initialArray.concat(...nestedArrays);
-
-  return flatArray;
-}
-
-/**
  * Checks if a value is defined, in a type-safe way.
  * Useful for filtering through arrays.
  * @param value The value to check.
@@ -154,4 +149,16 @@ export function flatten<T>(nestedArrays: T[][]): T[] {
  */
 export function notEmpty<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined;
+}
+
+/**
+ * Initializes a class and copies over additional properties.
+ * @param entityClass The class to initialize.
+ * @param partials The properties to copy over to the new object.
+ * @returns Returns the new instance.
+ */
+export function initWithProps<T extends ObjectLiteral>(entityClass: { new (): T }, ...partials: Partial<T>[]): T {
+  const entity = new entityClass();
+
+  return Object.assign(entity, ...partials);
 }

@@ -1,4 +1,4 @@
-import { chunkArray, flatten, notEmpty } from './Utils';
+import { chunkArray, notEmpty } from './Utils';
 
 // A promise-returning function.
 export interface PromiseFunction<T> {
@@ -74,5 +74,5 @@ export async function executeInBatches<T>(
 
   const results = await executeSequential(promiseFuncBatches);
 
-  return flatten(results);
+  return results.flat();
 }
