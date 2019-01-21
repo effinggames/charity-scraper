@@ -1,9 +1,9 @@
+import { chunkArray } from '@effinggames/ts-core-utils';
+import { executeInBatches } from '@effinggames/ts-promise-utils';
 import * as Request from 'request-promise-native';
 import { JobQueueNames } from 'shared/Constants';
 import { getPgBoss } from 'shared/PgBossHelper';
-import { executeInBatches } from 'shared/PromiseHelper';
 import { ExtractXMLPayload } from 'shared/Types';
-import { chunkArray } from 'shared/Utils';
 
 const XML_URL_BATCH_SIZE = 100;
 const PUBLISH_CONCURRENCY_RATE = 2;
@@ -51,7 +51,7 @@ async function init(): Promise<void> {
     console.log('Great success!');
   } else {
     console.log('Error: every arg must be a year starting from 2011');
-    console.log('Example usage: npm run scraper -- 2011 2012');
+    console.log('Example usage: npm start -- 2011 2012');
     process.exitCode = 1;
   }
 }

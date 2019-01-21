@@ -1,4 +1,4 @@
-import { getEnvVarOrThrow } from './Utils';
+import { getEnvVarOrThrow } from '@effinggames/ts-core-utils';
 
 /**
  * The PgBoss queue names.

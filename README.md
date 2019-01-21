@@ -1,4 +1,4 @@
-Charity-Scraper
+charity-scraper
 =================
 Using Node.js, Typescript, and Postgres.   
 
@@ -9,8 +9,8 @@ Downloads Form 990 charity data from AWS, converts it to json, and puts it in a 
 ```
 git clone ...
 npm install
-npm run worker (in separate tab)
-npm run scraper -- 2011 2012 2013 2014 2015 2016 2017 2018
+npm start -- 2011 2012 2013 2014 2015 2016 2017 2018
+(Run worker in charity-visualizer repo)
 ```
 
 Env variables:  
