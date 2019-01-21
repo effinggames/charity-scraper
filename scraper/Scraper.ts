@@ -50,10 +50,11 @@ async function init(): Promise<void> {
 
     console.log('Great success!');
   } else {
-    console.log('Error: every arg must be a year starting from 2011');
     console.log('Example usage: npm start -- 2011 2012');
-    process.exitCode = 1;
+    throw new Error('Every arg must be a year starting from 2011');
   }
 }
 
-init();
+init()
+  .catch(() => process.exit(1))
+  .finally(() => process.exit(0));

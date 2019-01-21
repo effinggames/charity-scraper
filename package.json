@@ -10,8 +10,8 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "@effinggames/ts-core-utils": "^1.0.1",
-    "@effinggames/ts-promise-utils": "^1.0.1",
+    "@effinggames/ts-core-utils": "^1.0.3",
+    "@effinggames/ts-promise-utils": "^1.0.3",
     "@types/node": "^9.4.6",
     "@types/request-promise-native": "^1.0.14",
     "@types/xml2js": "^0.4.2",
