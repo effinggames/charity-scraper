@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "strict": true,
     "lib": ["esnext"],
     "baseUrl": ".",
     "paths": {

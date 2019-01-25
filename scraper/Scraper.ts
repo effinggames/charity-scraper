@@ -17,12 +17,12 @@ const PUBLISH_CONCURRENCY_RATE = 2;
 async function getCharityFilingsForYear(year: string): Promise<(string | null)[]> {
   const awsUrl = `https://s3.amazonaws.com/irs-form-990/index_${year}.json`;
 
-  console.log(`Loading xml urls for ${awsUrl}`);
+  console.info(`Loading xml urls for ${awsUrl}`);
 
   const json: any = await Request.get(awsUrl, { json: true });
   const xmlUrls: string[] = json[`Filings${year}`].map((data: any) => data.URL);
 
-  console.log(`${xmlUrls.length} xml urls loaded`);
+  console.info(`${xmlUrls.length} xml urls loaded`);
 
   const urlChunks = chunkArray(xmlUrls, XML_URL_BATCH_SIZE);
   const payloads: ExtractXMLPayload[] = urlChunks.map((urls) => ({ urls }));
@@ -48,9 +48,9 @@ async function init(): Promise<void> {
       await getCharityFilingsForYear(year);
     }
 
-    console.log('Great success!');
+    console.info('Great success!');
   } else {
-    console.log('Example usage: npm start -- 2011 2012');
+    console.info('Example usage: npm start -- 2011 2012');
     throw new Error('Every arg must be a year starting from 2011');
   }
 }
